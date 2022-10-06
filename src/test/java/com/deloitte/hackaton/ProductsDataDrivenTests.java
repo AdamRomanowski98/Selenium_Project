@@ -47,8 +47,8 @@ public class ProductsDataDrivenTests extends TestsSetup{
                 .typePassword()
                 .logIn()
                 .verifyLogin();
-        startNewCustomerInfoTest(driver, userData).openAddressPage().deleteAllAddresses();
-            startNewCustomerInfoTest(driver, userData)
+        startNewAddressesInfoTest(driver, userData).openAddressPage().deleteAllAddresses().verifyIfAddressIsEmpty();
+            startNewAddressAddTest(driver, userData)
                     .clickOnAddNewButton()
                     .typeFirstName()
                     .typeLastName()
@@ -108,8 +108,8 @@ public class ProductsDataDrivenTests extends TestsSetup{
                 .typePassword()
                 .logIn()
                 .verifyLogin();
-        startNewCustomerInfoTest(driver, userData).openAddressPage().deleteAllAddresses();
-        startNewCustomerInfoTest(driver, userData)
+        startNewAddressesInfoTest(driver, userData).openAddressPage().deleteAllAddresses().verifyIfAddressIsEmpty();;
+        startNewAddressAddTest(driver, userData)
                 .clickOnAddNewButton()
                 .typeFirstName()
                 .typeLastName()
@@ -120,6 +120,8 @@ public class ProductsDataDrivenTests extends TestsSetup{
                 .typePostalCode()
                 .typePhoneNumber()
                 .addAddress();
+        startNewAddressesInfoTest(driver,userData)
+                .verifyAddedAddress();
 
         boolean isEmpty = startNewCartTest(driver, userData).checkIfCartEmpty();
         if(isEmpty){
@@ -158,8 +160,8 @@ public class ProductsDataDrivenTests extends TestsSetup{
                 .logIn()
                 .verifyLogin();
 
-        startNewCustomerInfoTest(driver, userData).openAddressPage().deleteAllAddresses();
-        startNewCustomerInfoTest(driver, userData)
+        startNewAddressesInfoTest(driver, userData).openAddressPage().deleteAllAddresses().verifyIfAddressIsEmpty();;
+        startNewAddressAddTest(driver, userData)
                 .clickOnAddNewButton()
                 .typeFirstName()
                 .typeLastName()
@@ -170,6 +172,8 @@ public class ProductsDataDrivenTests extends TestsSetup{
                 .typePostalCode()
                 .typePhoneNumber()
                 .addAddress();
+        startNewAddressesInfoTest(driver,userData)
+                .verifyAddedAddress();
 
         boolean isEmpty = startNewCartTest(driver, userData).checkIfCartEmpty();
         if(isEmpty){
@@ -207,11 +211,8 @@ public class ProductsDataDrivenTests extends TestsSetup{
                 .typePassword()
                 .logIn()
                 .verifyLogin();
-        startNewCustomerInfoTest(driver, userData).openAddressPage();
-        boolean isTrue = startNewCustomerInfoTest(driver, userData).verifyAddress();
-        System.out.println(isTrue);
-        if (!isTrue == true) {
-            startNewCustomerInfoTest(driver, userData)
+        startNewAddressesInfoTest(driver, userData).openAddressPage().deleteAllAddresses().verifyIfAddressIsEmpty();
+            startNewAddressAddTest(driver, userData)
                     .clickOnAddNewButton()
                     .typeFirstName()
                     .typeLastName()
@@ -222,7 +223,9 @@ public class ProductsDataDrivenTests extends TestsSetup{
                     .typePostalCode()
                     .typePhoneNumber()
                     .addAddress();
-        }
+            startNewAddressesInfoTest(driver, userData)
+                    .verifyAddedAddress();
+
         boolean isEmpty = startNewCartTest(driver, userData).checkIfCartEmpty();
         if(isEmpty){
             startNewCartTest(driver, userData).deleteIfNotEmpty();
@@ -254,9 +257,9 @@ public class ProductsDataDrivenTests extends TestsSetup{
                 .typePassword()
                 .logIn()
                 .verifyLogin();
-        startNewCustomerInfoTest(driver, userData).openAddressPage().deleteAllAddresses();
+        startNewAddressesInfoTest(driver, userData).openAddressPage().deleteAllAddresses().verifyIfAddressIsEmpty();
 
-        startNewCustomerInfoTest(driver, userData)
+        startNewAddressAddTest(driver, userData)
                 .clickOnAddNewButton()
                 .typeFirstName()
                 .typeLastName()
@@ -267,6 +270,9 @@ public class ProductsDataDrivenTests extends TestsSetup{
                 .typePostalCode()
                 .typePhoneNumber()
                 .addAddress();
+
+        startNewAddressesInfoTest(driver,userData)
+                .verifyAddedAddress();
 
         boolean isEmpty = startNewCartTest(driver, productData, userData).checkIfCartEmpty();
         if(isEmpty){

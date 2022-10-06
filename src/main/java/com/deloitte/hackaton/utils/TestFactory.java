@@ -3,7 +3,7 @@ import com.deloitte.hackaton.data.user.JSONInvalidEmails;
 import com.deloitte.hackaton.data.product.JSONProductData;
 import com.deloitte.hackaton.data.user.JSONUserData;
 import com.deloitte.hackaton.page.*;
-import com.deloitte.hackaton.page.CustomerInfoPage;
+import com.deloitte.hackaton.page.AddAddressPage;
 import com.deloitte.hackaton.page.LoginPage;
 import com.deloitte.hackaton.page.RegisterPage;
 import org.openqa.selenium.WebDriver;
@@ -37,8 +37,8 @@ public class TestFactory {
         return new ContactUsLoginUserPage(driver, userData);
     }
 
-    public static CustomerInfoPage startNewCustomerInfoTest(WebDriver driver, JSONUserData userData) {
-        return new CustomerInfoPage(driver, userData);
+    public static AddAddressPage startNewAddressAddTest(WebDriver driver, JSONUserData userData) {
+        return new AddAddressPage(driver, userData);
     }
 
     public static ProductPage startNewProductTest(WebDriver driver, JSONProductData productData, JSONUserData userData){
@@ -87,6 +87,9 @@ public class TestFactory {
         return new SneakersProductPage(driver, userData);
     }
 
+    public static AddressesInfoPage startNewAddressesInfoTest(WebDriver driver, JSONUserData userData){
+        return new AddressesInfoPage(driver, userData);
+    }
 
 }
 
