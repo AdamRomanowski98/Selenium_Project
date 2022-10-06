@@ -20,7 +20,7 @@ public class ContactUsTests extends TestsSetup{
     void contactUsNonLoginUser(JSONUserData userData){
         startNewContactUsFormNonLoginTest(driver, userData)
                 .openMainPage()
-//                .openContactUsPage()
+                .openContactUsPage()
                 .inputFullName()
                 .inputEmail()
                 .inputEnquire()
