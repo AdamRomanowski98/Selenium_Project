@@ -46,8 +46,8 @@ public class BooksPage extends ProductAbstract {
 
     @Step ("Test changing list view (grid/list)")
     public BooksPage changeViewGrid(){
-        Select viewAsDropdow = new Select(viewAs);
-        viewAsDropdow.selectByVisibleText("Grid");
+        Select viewAsDropdown = new Select(viewAs);
+        viewAsDropdown.selectByVisibleText("Grid");
         assertTrue(firstItemGrid.isDisplayed());
         assertTrue(secondItemGrid.isDisplayed());
         return this;

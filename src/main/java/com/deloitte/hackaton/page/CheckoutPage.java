@@ -66,9 +66,6 @@ public class CheckoutPage extends ProductAbstract{
     @FindBy(xpath = "//*[@id=\"payment-info-buttons-container\"]/input")
     WebElement purchaseOrderNumberContinueButton;
 
-    @FindBy(xpath = "//td[@class=\"a-center quantity\"]//span")
-    WebElement quantity;
-
     @FindBy(xpath = "//input[@onclick=\"Billing.save()\"]")
     WebElement clickBillingAddress;
 
@@ -134,8 +131,6 @@ public class CheckoutPage extends ProductAbstract{
     @FindBy(xpath = "//em//a")
     WebElement productNameField;
 
-    @FindBy (xpath = "//label[@for=\"shippingoption_0\"]")
-    WebElement shippingGroundLabel;
     @FindBy (xpath = "//div[@class=\"payment-details\"]/label[@for=\"paymentmethod_0\"]")
     WebElement paymentMethodCODLabel;
 
@@ -167,12 +162,7 @@ public class CheckoutPage extends ProductAbstract{
     @FindBy (xpath = "//table[@class=\"cart-total\"]/tbody/tr/td[@class=\"cart-total-right\"]/span[@class=\"nobr\"]//strong")
     WebElement orderTotal;
 
-
-
-
     public List<String> sneakersElements = SneakersProductPage.getList();
-
-    public List<String> productDataElements = CartPage.getList();
 
     public List<String> productDetailsElements = MainPage.getList();
 
@@ -184,8 +174,6 @@ public class CheckoutPage extends ProductAbstract{
         super(driver, productData);
         this.userData = userData;
     }
-
-
 
     @Step("Click Order details and validate order")
     public CheckoutPage clickThroughPaymentMethods() {
@@ -228,7 +216,7 @@ public class CheckoutPage extends ProductAbstract{
     }
 
     @Step
-    public CheckoutPage selectShippingAddress() throws InterruptedException {
+    public CheckoutPage selectShippingAddress(){
         shippingAddress.click();
         new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(shippingContinueButton));
         shippingContinueButton.click();
@@ -236,7 +224,7 @@ public class CheckoutPage extends ProductAbstract{
     }
 
     @Step
-    public CheckoutPage selectShippingMethod() throws InterruptedException {
+    public CheckoutPage selectShippingMethod(){
         groundShippingMethod.click();
         checkoutInfoList.add(groundShippingMethod.getText());
         new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(shippingMethodContinueButton));
@@ -245,7 +233,7 @@ public class CheckoutPage extends ProductAbstract{
     }
 
     @Step
-    public CheckoutPage selectPaymentMethod() throws InterruptedException {
+    public CheckoutPage selectPaymentMethod(){
         new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(paymentMethod));
         paymentMethod.click();
         checkoutInfoList.add(paymentMethod.getText());
@@ -255,7 +243,7 @@ public class CheckoutPage extends ProductAbstract{
     }
 
     @Step
-    public CheckoutPage typePurchaseOrderNumber() throws InterruptedException {
+    public CheckoutPage typePurchaseOrderNumber(){
         new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(purchaseOrderNumber));
         purchaseOrderNumber.sendKeys("0001");
         new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(purchaseOrderNumberContinueButton));

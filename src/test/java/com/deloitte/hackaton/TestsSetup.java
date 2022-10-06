@@ -1,6 +1,8 @@
 package com.deloitte.hackaton;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.Before;
+import org.junit.Rule;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,7 +20,7 @@ public class TestsSetup {
 
     WebDriver driver;
 
-    String webDriver = "chrome";
+    String webDriver = "chrome-headless";
 
     @BeforeAll
     static void setupAll(){
@@ -27,15 +29,21 @@ public class TestsSetup {
     }
 
     @BeforeEach
-    void setup() {
+    void setup(){
         if(webDriver == "chrome"){
+            driver = new ChromeDriver();
+        }else if(webDriver == "chrome-headless"){
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--headless");
             driver = new ChromeDriver(options);
         }else if(webDriver == "edge"){
-            EdgeOptions options = new EdgeOptions();
-            options.addArguments("--headless");
-            driver = new EdgeDriver(options);
+            driver = new EdgeDriver();
+        } else if (webDriver == "edge-headless") {
+            EdgeOptions edgeOptions = new EdgeOptions();
+            edgeOptions.addArguments("--headless");
+            driver = new EdgeDriver(edgeOptions);
+        }else {
+            System.out.println("Invalid browser");
         }
         ScreenShooter.setDriver(driver);
         driver.manage().window().maximize();

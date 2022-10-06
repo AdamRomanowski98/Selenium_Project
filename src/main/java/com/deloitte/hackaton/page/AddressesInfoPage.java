@@ -76,6 +76,7 @@ public class AddressesInfoPage extends UserAbstract {
     public AddressesInfoPage deleteAllAddresses(){
 
         boolean isTrue = false;
+
         try{
             List<WebElement> deleteButtons = driver.findElements(By.cssSelector(".delete-address-button"));
             for(int i = 0; i<deleteButtons.size(); i++){
@@ -89,13 +90,16 @@ public class AddressesInfoPage extends UserAbstract {
                 driver.switchTo().alert().accept();
             }
 
+            boolean isTrue2 = false;
+            while (!isTrue2){
+                boolean addressBox = !driver.findElements(By.xpath("//div[@class=\"address-list\"][contains(text(), \"No addresses\")]")).isEmpty();
+                isTrue2 = addressBox;
+            }
+            assertTrue(isTrue2);
+
         }catch (NoSuchElementException e){
             System.out.println("No such element");
         }
         return this;
     }
-
-
-
-
 }

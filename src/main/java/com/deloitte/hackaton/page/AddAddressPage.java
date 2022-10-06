@@ -9,9 +9,6 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class AddAddressPage extends UserAbstract {
 
@@ -113,7 +110,7 @@ public class AddAddressPage extends UserAbstract {
     }
 
     @Step("Add new address")
-    public AddAddressPage addAddress() throws InterruptedException {
+    public AddAddressPage addAddress(){
         new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(saveButton));
         saveButton.click();
         return this;

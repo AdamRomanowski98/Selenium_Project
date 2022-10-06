@@ -4,6 +4,9 @@ import com.deloitte.hackaton.data.JSONDataReader;
 import com.deloitte.hackaton.data.product.JSONProductData;
 import com.deloitte.hackaton.data.user.JSONUserData;
 import io.qameta.allure.Description;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -11,12 +14,14 @@ import java.util.stream.Stream;
 
 import static com.deloitte.hackaton.utils.TestFactory.*;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ProductsDataDrivenTests extends TestsSetup{
 
 
     @Description ("TC 31537. Negative scenario: try to checkout without agreeing to terms of service")
     @ParameterizedTest
     @MethodSource("productsDataStream")
+    @Order(1)
     void testCheckoutWithoutAgreeing(JSONProductData productData) throws InterruptedException {
         mainPage(driver, productData).navigateToMainPage();
         boolean isEmpty = startNewCartTest(driver, productData).checkIfCartEmpty();
@@ -38,6 +43,7 @@ public class ProductsDataDrivenTests extends TestsSetup{
     @Description ("TC 31529. Buy a product as a registered user")
     @ParameterizedTest
     @MethodSource("productsDataStream")
+    @Order(6)
     void buyAProductAsRegistered(JSONProductData productData) throws InterruptedException {
         JSONUserData userData = JSONDataReader.readUsers().getUsers().get(0);
         startNewProductTest(driver, productData, userData)
@@ -101,6 +107,7 @@ public class ProductsDataDrivenTests extends TestsSetup{
     @Description ("TC 31527. Buy physical gift card")
     @ParameterizedTest
     @MethodSource(value = "usersDataStream")
+    @Order(2)
     void buyAPhysicalGiftCard(JSONUserData userData) throws InterruptedException {
         startNewLoginTest(driver, userData)
                 .openLoginPage()
@@ -108,7 +115,7 @@ public class ProductsDataDrivenTests extends TestsSetup{
                 .typePassword()
                 .logIn()
                 .verifyLogin();
-        startNewAddressesInfoTest(driver, userData).openAddressPage().deleteAllAddresses().verifyIfAddressIsEmpty();;
+        startNewAddressesInfoTest(driver, userData).openAddressPage().deleteAllAddresses();
         startNewAddressAddTest(driver, userData)
                 .clickOnAddNewButton()
                 .typeFirstName()
@@ -152,6 +159,7 @@ public class ProductsDataDrivenTests extends TestsSetup{
     @Description ("TC 31526. Buy a customizable product - happy path")
     @ParameterizedTest
     @MethodSource(value = "usersDataStream")
+    @Order(3)
     void buyACustomizableProduct(JSONUserData userData) throws InterruptedException {
         startNewLoginTest(driver, userData)
                 .openLoginPage()
@@ -160,7 +168,7 @@ public class ProductsDataDrivenTests extends TestsSetup{
                 .logIn()
                 .verifyLogin();
 
-        startNewAddressesInfoTest(driver, userData).openAddressPage().deleteAllAddresses().verifyIfAddressIsEmpty();;
+        startNewAddressesInfoTest(driver, userData).openAddressPage().deleteAllAddresses();
         startNewAddressAddTest(driver, userData)
                 .clickOnAddNewButton()
                 .typeFirstName()
@@ -204,6 +212,7 @@ public class ProductsDataDrivenTests extends TestsSetup{
     @Description ("TC 31525. Buy non-customizable product - happy path")
     @ParameterizedTest
     @MethodSource(value = "usersDataStream")
+    @Order(4)
     void buyANonCustomizableProduct(JSONUserData userData) throws InterruptedException {
         startNewLoginTest(driver, userData)
                 .openLoginPage()
@@ -211,7 +220,7 @@ public class ProductsDataDrivenTests extends TestsSetup{
                 .typePassword()
                 .logIn()
                 .verifyLogin();
-        startNewAddressesInfoTest(driver, userData).openAddressPage().deleteAllAddresses().verifyIfAddressIsEmpty();
+        startNewAddressesInfoTest(driver, userData).openAddressPage().deleteAllAddresses();
             startNewAddressAddTest(driver, userData)
                     .clickOnAddNewButton()
                     .typeFirstName()
@@ -248,6 +257,7 @@ public class ProductsDataDrivenTests extends TestsSetup{
     @Description ("TC 31531. Test Reorder button in Order Details")
     @ParameterizedTest
     @MethodSource("productsDataStream")
+    @Order(5)
     void reOrder(JSONProductData productData) throws InterruptedException {
         JSONUserData userData = JSONDataReader.readUsers().getUsers().get(0);
 
@@ -257,7 +267,7 @@ public class ProductsDataDrivenTests extends TestsSetup{
                 .typePassword()
                 .logIn()
                 .verifyLogin();
-        startNewAddressesInfoTest(driver, userData).openAddressPage().deleteAllAddresses().verifyIfAddressIsEmpty();
+        startNewAddressesInfoTest(driver, userData).openAddressPage().deleteAllAddresses();
 
         startNewAddressAddTest(driver, userData)
                 .clickOnAddNewButton()

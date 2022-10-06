@@ -64,12 +64,11 @@ public class SneakersProductPage extends UserAbstract {
     }
 
     @Step("Product is customized and added to cart")
-    public CartPage addToCart() throws InterruptedException {
+    public CartPage addToCart(){
         addToCart.click();
         addToCartConfirmation.click();
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click();", goToCartButton);
-      //  Thread.sleep(500L);
         return new CartPage(this.driver, this.userData);
     }
 }

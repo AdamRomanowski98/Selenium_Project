@@ -42,7 +42,7 @@ public class GiftCardsPage extends UserAbstract {
     }
 
     @Step("Provide recipient info & write a message and add to cart")
-    public CartPage provideInfoAndAddToCart() throws InterruptedException {
+    public CartPage provideInfoAndAddToCart() {
         recipientsName.sendKeys("Flip");
         yourName.sendKeys("Flap");
         giftCardMessage.sendKeys("This is the message");
@@ -50,7 +50,6 @@ public class GiftCardsPage extends UserAbstract {
         addToCartConfirmation.click();
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click();", goToCartButton);
-        //Thread.sleep(500L);
         return new CartPage(this.driver, this.userData);
     }
 }
