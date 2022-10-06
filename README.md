@@ -24,12 +24,12 @@ by default.If any of the tests fails due to website instability simply rerun it.
 5. Type mvn clean test allure:report allure:serve to run the tests along with allure report
 
 #Change configuration
-1. Go to src/test/java/com/deloitte/hackaton/TestsSetup
-2. Change String webDriver value to:
- -"chrome" - to run in Chrome browser with GUI
- -"chrome-headless" - to run in Chrome browser in headless mode
- -"edge" - to run in Microsoft Edge browser with GUI
- -"edge-headless" - to run in Edge browser in headless mode
+Go to src/test/java/com/deloitte/hackaton/TestsSetup
+Change String webDriver value to
+- "chrome" - to run in Chrome browser with GUI
+- "chrome-headless" - to run in Chrome browser in headless mode
+- "edge" - to run in Microsoft Edge browser with GUI
+- "edge-headless" - to run in Edge browser in headless mode
 
 
 #Project components
