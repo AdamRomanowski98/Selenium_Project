@@ -71,8 +71,7 @@ public class AddressesInfoPage extends UserAbstract {
         assertEquals(userData.getCountry(), country.getText());
         return this;
     }
-
-    @Step("Delete all billing addresses")
+  @Step("Delete all billing addresses")
     public AddressesInfoPage deleteAllAddresses(){
 
         boolean isTrue = false;
@@ -89,14 +88,6 @@ public class AddressesInfoPage extends UserAbstract {
                 deleteButton.get(0).click();
                 driver.switchTo().alert().accept();
             }
-
-            boolean isTrue2 = false;
-            while (!isTrue2){
-                boolean addressBox = !driver.findElements(By.xpath("//div[@class=\"address-list\"][contains(text(), \"No addresses\")]")).isEmpty();
-                isTrue2 = addressBox;
-            }
-            assertTrue(isTrue2);
-
         }catch (NoSuchElementException e){
             System.out.println("No such element");
         }
