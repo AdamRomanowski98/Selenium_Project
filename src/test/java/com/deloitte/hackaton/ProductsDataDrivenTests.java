@@ -53,7 +53,7 @@ public class ProductsDataDrivenTests extends TestsSetup{
                 .typePassword()
                 .logIn()
                 .verifyLogin();
-        startNewAddressesInfoTest(driver, userData).openAddressPage().deleteAllAddresses().verifyIfAddressIsEmpty();
+        startNewAddressesInfoTest(driver, userData).openAddressPage().deleteAllAddresses();
             startNewAddressAddTest(driver, userData)
                     .clickOnAddNewButton()
                     .typeFirstName()
