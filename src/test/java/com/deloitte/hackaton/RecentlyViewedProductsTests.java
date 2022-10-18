@@ -2,7 +2,9 @@ package com.deloitte.hackaton;
 
 import io.qameta.allure.Description;
 import org.junit.jupiter.api.*;
+
 import static com.deloitte.hackaton.utils.TestFactory.*;
+
 
 public class RecentlyViewedProductsTests extends TestsSetup{
 
@@ -16,7 +18,6 @@ public class RecentlyViewedProductsTests extends TestsSetup{
                 .diamondEarrings()
                 .vintageRing()
                 .presenceOfRecentlyViewdItems();
-
     }
 
 }

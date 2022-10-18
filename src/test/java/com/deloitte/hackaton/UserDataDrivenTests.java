@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.stream.Stream;
 
 import static com.deloitte.hackaton.utils.TestFactory.*;
-import static com.deloitte.hackaton.utils.TestFactory.startNewCustomerInfoTest;
+import static com.deloitte.hackaton.utils.TestFactory.startNewAddressAddTest;
 
 public class UserDataDrivenTests extends TestsSetup{
 
@@ -60,9 +60,9 @@ public class UserDataDrivenTests extends TestsSetup{
                 .typePassword()
                 .logIn()
                 .verifyLogin();
-        startNewCustomerInfoTest(driver, userData).openAddressPage().deleteAllAddresses();
+        startNewAddressesInfoTest(driver, userData).openAddressPage().deleteAllAddresses();
         Thread.sleep(1000);
-        startNewCustomerInfoTest(driver, userData)
+        startNewAddressAddTest(driver, userData)
                 .clickOnAddNewButton()
                 .typeFirstName()
                 .typeLastName()
@@ -72,8 +72,11 @@ public class UserDataDrivenTests extends TestsSetup{
                 .typeAddress1()
                 .typePostalCode()
                 .typePhoneNumber()
-                .addAddress()
-                .verifyIfAdded();
+                .addAddress();
+        startNewAddressesInfoTest(driver, userData)
+                .verifyAddedAddress()
+                .deleteAllAddresses()
+                .verifyIfAddressIsEmpty();
     }
 
     private static Stream<JSONUserData> registerUsersDataStream() {

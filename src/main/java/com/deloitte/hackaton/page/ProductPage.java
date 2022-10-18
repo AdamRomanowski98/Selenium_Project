@@ -96,17 +96,15 @@ public class ProductPage extends ProductAbstract{
     }
 
     @Step("Assert if product is ordered")
-    public ProductPage verifyNotification() throws InterruptedException {
+    public ProductPage verifyNotification(){
         var txt = notificationBar.getText();
-     //   new WebDriverWait(driver, Duration.ofSeconds(4)).until(ExpectedConditions.visibilityOf(itemName));
         assertTrue(txt.contains(SUCCESS_NOTIFICATION));
         return this;
     }
 
     @Step("Open shopping cart page")
-    public CartPage goToCartPage() throws InterruptedException {
+    public CartPage goToCartPage(){
         cartLink.click();
-   //     Thread.sleep(500L);
         return new CartPage(this.driver, this.productData, this.userData);
     }
 

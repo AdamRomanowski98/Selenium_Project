@@ -1,9 +1,9 @@
 {
   "users": [
     {
-      "firstName": "adam",
-      "lastName": "romanowski",
-      "email": "adam123@gmail.com",
+      "firstName": "adamTest123",
+      "lastName": "testLastName",
+      "email": "adamtest123@email.com",
       "password": "password123",
       "country" : "Poland",
       "city" : "Warsaw",

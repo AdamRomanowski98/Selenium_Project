@@ -33,7 +33,7 @@ public class RateReviewPage extends ProductAbstract{
 
     @Step("Find any review")
     public RateReviewPage findAnyReview(){
-        productReview.isDisplayed();
+        assertTrue(productReview.isDisplayed());
         return this;
     }
 
@@ -44,7 +44,7 @@ public class RateReviewPage extends ProductAbstract{
                 .findAny()
                 .get();
 
-        var realID = newItemRandom.findElement(By.xpath("//span[contains(@id, 'helpfulness-vote-result')]"));
+        var voteResult = newItemRandom.findElement(By.xpath("//span[contains(@id, 'helpfulness-vote-result')]"));
         WebElement yesVote =  newItemRandom.findElement(By.xpath("//span[contains(@id,'vote-yes')]"));
         WebElement yesVoteNumber = newItemRandom.findElement(By.xpath("//span[contains(@id, 'helpfulness-vote-yes')]"));
         int yesVoteNumberInt = Integer.parseInt(yesVoteNumber.getText());
@@ -53,10 +53,11 @@ public class RateReviewPage extends ProductAbstract{
         WebElement noVoteNumber = newItemRandom.findElement(By.xpath("//span[contains(@id, 'helpfulness-vote-no')]"));
         int noVoteNumberInt = Integer.parseInt(noVoteNumber.getText());
 
-        if(realID.getText() == null){
+        if(voteResult.getText() == null){
 
             yesVote.click();
             assertEquals(yesVoteNumberInt+1, Integer.parseInt(yesVoteNumber.getText()));
+            assertEquals(noVoteNumberInt-1, Integer.parseInt(noVoteNumber.getText()));
 
             noVote.click();
             assertEquals(noVoteNumberInt+1, Integer.parseInt(noVoteNumber.getText()));

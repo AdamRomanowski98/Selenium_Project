@@ -19,8 +19,8 @@ public class NewsletterNegativeTests extends TestsSetup{
         startNewNewsletterNegativeTest(driver, invalidEmails)
                 .openMainPage()
                 .inputInvalidMail()
-                .subscribe();
-            //    .errorMessage();
+                .subscribe()
+                .errorMessage();
     }
 
     private static Stream<JSONInvalidEmails> invalidEmailStream() {

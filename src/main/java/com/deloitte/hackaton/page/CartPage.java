@@ -100,6 +100,12 @@ public class CartPage extends ProductAbstract{
             checkbox.click();
         }
         updateCart.click();
+        try{
+            boolean doesExist =  !driver.findElements(By.xpath("//div[@class=\"order-summary-content\"][contains(text(), \"Your Shopping Cart is empty!\")]")).isEmpty();
+            assertTrue(doesExist);
+        }catch (NoSuchElementException e){
+            System.out.println("Such element doesn't exist");
+        }
         return this;
     }
 
@@ -145,6 +151,8 @@ public class CartPage extends ProductAbstract{
     public CartPage selectUsersCountry(){
         Select countryDropDownSelect = new Select(countryDropDown);
         countryDropDownSelect.selectByVisibleText(userData.getCountry());
+        String text = countryDropDownSelect.getAllSelectedOptions().stream().iterator().next().getText();
+        assertEquals(text, getUserData().getCountry());
         return this;
     }
 
@@ -172,7 +180,7 @@ public class CartPage extends ProductAbstract{
     }
 
     @Step("Go to checkout")
-    public CheckoutPage goToCheckout() throws InterruptedException {
+    public CheckoutPage goToCheckout(){
         new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(checkoutButton));
         checkoutButton.click();
         return new CheckoutPage(this.driver, this.productData, this.userData);
