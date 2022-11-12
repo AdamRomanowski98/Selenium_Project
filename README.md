@@ -17,7 +17,7 @@ by default.If any of the tests fails due to website instability simply rerun it.
 
 
 #How to run:
-1. git clone https://Deloitte-CE-IT@dev.azure.com/Deloitte-CE-IT/CE_SI_LAB_group_C/_git/CE_SI_LAB_group_C to your local folder
+1. git clone https://github.com/AdamRomanowski98/Selenium_Project.git to your local folder
 2. Open cloned directory in IDE
 3. Open terminal
 4. Type mvn clean test to run the tests
